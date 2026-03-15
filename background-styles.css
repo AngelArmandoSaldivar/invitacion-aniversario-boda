@@ -1,0 +1,108 @@
+/* Estilos para el fondo y decoraciones */
+
+.hero-section {
+    min-height: 100vh;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    animation: wave 15s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Anillos decorativos */
+.decorative-rings {
+    position: absolute;
+    font-size: 100px;
+    color: var(--gold);
+    opacity: 0.15;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.ring-1 { top: 10%; left: 10%; }
+.ring-2 { top: 20%; right: 15%; animation-direction: reverse; }
+.ring-3 { bottom: 15%; left: 15%; animation-duration: 25s; }
+.ring-4 { bottom: 20%; right: 10%; animation-direction: reverse; animation-duration: 30s; }
+
+/* Flores decorativas */
+.decorative-flowers {
+    position: absolute;
+    font-size: 60px;
+    opacity: 0.2;
+    animation: sway 4s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.flower-1 { top: 15%; left: 5%; color: var(--gold); }
+.flower-2 { top: 25%; right: 8%; color: var(--dark-gold); animation-delay: 1s; }
+.flower-3 { bottom: 25%; left: 8%; color: var(--gold); animation-delay: 2s; }
+.flower-4 { bottom: 15%; right: 5%; color: var(--dark-gold); animation-delay: 1.5s; }
+
+/* Corazones flotantes */
+.decorative-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    color: var(--gold);
+    opacity: 0.15;
+    animation: float-heart 10s infinite;
+}
+
+@keyframes float-heart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
