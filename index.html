@@ -242,37 +242,59 @@
             }
         }
 
-        /* Marco de foto mejorado para aniversario */
+        /* Marco de foto - Aniversario de Bodas */
         .photo-frame-container {
             position: relative;
-            width: 320px;
-            height: 320px;
-            margin: 0 auto 40px;
-        }
-
-        .photo-frame {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            padding: 10px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary) 100%);
-            box-shadow: var(--shadow);
-            position: relative;
-            animation: gentleFloat 4s ease-in-out infinite;
+            width: 300px;
+            height: 360px;
+            margin: 0 auto 50px;
+            animation: gentleFloat 5s ease-in-out infinite;
         }
 
         @keyframes gentleFloat {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-10px); }
         }
 
+        /* Capa exterior: borde dorado degradado */
+        .photo-frame-outer {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #e8d5a3, #c5a572, #f0e0b0, #a88e5a, #e8d5a3);
+            padding: 4px;
+            box-shadow:
+                0 0 0 1px rgba(197,165,114,0.3),
+                0 20px 50px rgba(197,165,114,0.35),
+                0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Capa media: fondo blanco con línea interior */
+        .photo-frame-mid {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            background: #fff;
+            padding: 8px;
+            position: relative;
+        }
+
+        .photo-frame-mid::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(197,165,114,0.5);
+            border-radius: 3px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Imagen */
         .photo-frame-inner {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: 3px;
             overflow: hidden;
-            border: 4px solid var(--white);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
         }
 
         .photo-placeholder {
@@ -290,63 +312,46 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .photo-placeholder img:hover {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
-        .frame-decoration {
+        /* Ornamentos en las 4 esquinas */
+        .frame-corner {
             position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border: 2px dashed var(--primary-light);
-            border-radius: 50%;
-            animation: rotateSlow 30s linear infinite;
-        }
-
-        .frame-decoration-2 {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 1px solid var(--primary);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: rotateSlow 20s linear infinite reverse;
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .frame-ornaments {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            width: 44px;
+            height: 44px;
+            z-index: 10;
             pointer-events: none;
         }
+        .frame-corner svg { width: 100%; height: 100%; }
+        .fc-tl { top: -10px; left: -10px; }
+        .fc-tr { top: -10px; right: -10px; transform: scaleX(-1); }
+        .fc-bl { bottom: -10px; left: -10px; transform: scaleY(-1); }
+        .fc-br { bottom: -10px; right: -10px; transform: scale(-1); }
 
-        .frame-ornament {
+        /* Etiqueta inferior con año */
+        .frame-label {
             position: absolute;
-            font-size: 24px;
-            color: var(--primary);
-            filter: drop-shadow(0 2px 5px rgba(197, 165, 114, 0.3));
+            bottom: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--primary-dark);
+            text-transform: uppercase;
         }
-
-        .orn-1 { top: -15px; left: 50%; transform: translateX(-50%); }
-        .orn-2 { bottom: -15px; left: 50%; transform: translateX(-50%); }
-        .orn-3 { left: -15px; top: 50%; transform: translateY(-50%); }
-        .orn-4 { right: -15px; top: 50%; transform: translateY(-50%); }
-        .orn-5 { top: 15%; right: -10px; transform: rotate(15deg); }
-        .orn-6 { bottom: 15%; left: -10px; transform: rotate(-15deg); }
+        .frame-label::before, .frame-label::after {
+            content: '✦';
+            margin: 0 8px;
+            color: var(--primary);
+            font-size: 0.7rem;
+        }
 
         .hero-title {
             font-family: 'Dancing Script', cursive;
@@ -479,46 +484,128 @@
             font-style: italic;
         }
 
-        /* Cards mejoradas */
+        /* Cards rediseñadas */
         .card-custom {
             border: none;
-            border-radius: 30px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-            overflow: hidden;
+            border-radius: 4px;
+            background: #fffdf8;
+            box-shadow:
+                0 0 0 1px rgba(197,165,114,0.25),
+                0 2px 0 0 rgba(197,165,114,0.4),
+                0 20px 50px rgba(0,0,0,0.08);
+            transition: all 0.45s cubic-bezier(.22,.68,0,1.2);
+            overflow: visible;
             margin-bottom: 30px;
             height: 100%;
+            position: relative;
+        }
+
+        .card-custom::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px solid rgba(197,165,114,0.18);
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .card-custom:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-8px);
+            box-shadow:
+                0 0 0 1px rgba(197,165,114,0.4),
+                0 2px 0 0 rgba(197,165,114,0.6),
+                0 30px 60px rgba(197,165,114,0.15);
         }
 
+        /* Medallón del ícono */
+        .card-icon-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: -32px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .card-icon-medallion {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #f0e0b0, #c5a572, #a88e5a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 0 0 4px #fffdf8,
+                0 0 0 6px rgba(197,165,114,0.35),
+                0 8px 20px rgba(197,165,114,0.3);
+        }
+
+        .card-icon-medallion i {
+            font-size: 1.6rem;
+            color: #fff;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.25));
+        }
+
+        /* Cabecera de la card */
         .card-header-custom {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(160deg, #2c2416 0%, #3d3020 60%, #2c2416 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 28px 20px 44px;
             text-align: center;
-            border-bottom: 5px solid var(--gold-light);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card-header-custom i {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        .card-header-custom::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #c5a572, #f0e0b0, #c5a572, transparent);
+        }
+
+        .card-header-custom::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(197,165,114,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(197,165,114,0.08) 0%, transparent 60%);
+            pointer-events: none;
         }
 
         .card-header-custom h3 {
-            font-size: 2rem;
+            font-size: 1.7rem;
             margin: 0;
             font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #f0e0b0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-header-ornament {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: rgba(197,165,114,0.7);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
         }
 
         .card-body-custom {
-            padding: 35px;
+            padding: 10px 35px 35px;
+            position: relative;
+            z-index: 2;
         }
 
         .info-item {
@@ -984,25 +1071,54 @@
         <div class="decorative-symbol symbol-4">✨</div>
 
         <div class="hero-content">
-            <!-- Marco de foto mejorado para aniversario -->
+            <!-- Marco de foto formal para aniversario -->
             <div class="photo-frame-container">
-                <div class="frame-decoration"></div>
-                <div class="frame-decoration-2"></div>
-                <div class="frame-ornaments">
-                    <span class="frame-ornament orn-1">💎</span>
-                    <span class="frame-ornament orn-2">💎</span>
-                    <span class="frame-ornament orn-3">💍</span>
-                    <span class="frame-ornament orn-4">💍</span>
-                    <span class="frame-ornament orn-5">✨</span>
-                    <span class="frame-ornament orn-6">✨</span>
+                <div class="frame-corner fc-tl">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 42 C2 22 22 2 42 2" stroke="#c5a572" stroke-width="1.5" fill="none"/>
+                        <path d="M2 34 C2 18 18 2 34 2" stroke="#e8d5a3" stroke-width="1" fill="none"/>
+                        <circle cx="2" cy="2" r="3" fill="#c5a572"/>
+                        <circle cx="22" cy="2" r="2" fill="#c5a572" opacity="0.6"/>
+                        <circle cx="2" cy="22" r="2" fill="#c5a572" opacity="0.6"/>
+                    </svg>
                 </div>
-                <div class="photo-frame">
-                    <div class="photo-frame-inner">
-                        <div class="photo-placeholder">
-                            <img src="images/festejados.jpeg" alt="María y José - 50 Aniversario" onerror="this.style.display='none'; this.parentElement.innerHTML='💑';">
+                <div class="frame-corner fc-tr">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 42 C2 22 22 2 42 2" stroke="#c5a572" stroke-width="1.5" fill="none"/>
+                        <path d="M2 34 C2 18 18 2 34 2" stroke="#e8d5a3" stroke-width="1" fill="none"/>
+                        <circle cx="2" cy="2" r="3" fill="#c5a572"/>
+                        <circle cx="22" cy="2" r="2" fill="#c5a572" opacity="0.6"/>
+                        <circle cx="2" cy="22" r="2" fill="#c5a572" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="frame-corner fc-bl">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 42 C2 22 22 2 42 2" stroke="#c5a572" stroke-width="1.5" fill="none"/>
+                        <path d="M2 34 C2 18 18 2 34 2" stroke="#e8d5a3" stroke-width="1" fill="none"/>
+                        <circle cx="2" cy="2" r="3" fill="#c5a572"/>
+                        <circle cx="22" cy="2" r="2" fill="#c5a572" opacity="0.6"/>
+                        <circle cx="2" cy="22" r="2" fill="#c5a572" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="frame-corner fc-br">
+                    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 42 C2 22 22 2 42 2" stroke="#c5a572" stroke-width="1.5" fill="none"/>
+                        <path d="M2 34 C2 18 18 2 34 2" stroke="#e8d5a3" stroke-width="1" fill="none"/>
+                        <circle cx="2" cy="2" r="3" fill="#c5a572"/>
+                        <circle cx="22" cy="2" r="2" fill="#c5a572" opacity="0.6"/>
+                        <circle cx="2" cy="22" r="2" fill="#c5a572" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="photo-frame-outer">
+                    <div class="photo-frame-mid">
+                        <div class="photo-frame-inner">
+                            <div class="photo-placeholder">
+                                <img src="images/festejados.jpeg" alt="Carmen & Juan - 50 Aniversario" onerror="this.style.display='none'; this.parentElement.innerHTML='&#128145;';">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="frame-label">50 A&ntilde;os de Amor</div>
             </div>
 
             <h1 class="hero-title">Boda de Oro</h1>
@@ -1047,34 +1163,39 @@
             <div class="col-lg-8">
                 <div class="card-custom">
                     <div class="card-header-custom">
-                        <i class="fas fa-envelope-open-text"></i>
+                        <span class="card-header-ornament">✦ &nbsp; Invitación &nbsp; ✦</span>
                         <h3>Comparte nuestra felicidad</h3>
                     </div>
+                    <div class="card-icon-wrap">
+                        <div class="card-icon-medallion">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                    </div>
                     <div class="card-body-custom">
-                        <p class="text-center" style="font-size: 1.3rem; line-height: 1.9; color: #555; font-style: italic;">
-                            "Después de <strong style="color: var(--primary-dark);">50 años</strong> de amor incondicional, 
-                            complicidad y sueños compartidos, queremos celebrar este momento tan especial 
-                            con quienes han sido parte de nuestra historia."
+                        <p class="text-center" style="font-family:'Cormorant Garamond',serif; font-size: 1.35rem; line-height: 2; color: #5a4a3a; font-style: italic;">
+                            &ldquo;Después de <strong style="color: var(--primary-dark); font-style:normal;">50 años</strong> de amor incondicional,
+                            complicidad y sueños compartidos, queremos celebrar este momento tan especial
+                            con quienes han sido parte de nuestra historia.&rdquo;
                         </p>
                         <div class="divider"></div>
-                        <div class="row text-center mt-4">
-                            <div class="col-md-6">
-                                <div class="info-item">
+                        <div class="row text-center mt-2">
+                            <div class="col-md-6 mb-3">
+                                <div style="background:linear-gradient(135deg,#faf6ee,#f5ede0); border-radius:12px; padding:18px 12px; border:1px solid rgba(197,165,114,0.2);">
                                     <div class="info-label"><i class="far fa-calendar-alt"></i> Fecha</div>
                                     <div class="info-text">Sábado, 25 de Abril de 2026</div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="info-item">
+                            <div class="col-md-6 mb-3">
+                                <div style="background:linear-gradient(135deg,#faf6ee,#f5ede0); border-radius:12px; padding:18px 12px; border:1px solid rgba(197,165,114,0.2);">
                                     <div class="info-label"><i class="far fa-clock"></i> Hora</div>
-                                    <div class="info-text">4:40 PM - Recepción</div>
+                                    <div class="info-text">4:40 PM</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center mt-3">
-                            <div class="info-item">
-                                <div class="info-label"><i class="fas fa-hourglass-half"></i> Ceremonia Religiosa</div>
-                                <div class="info-text">4:40:00 PM</div>
+                        <div class="text-center mt-1">
+                            <div style="background:linear-gradient(135deg,#faf6ee,#f5ede0); border-radius:12px; padding:18px 12px; border:1px solid rgba(197,165,114,0.2);">
+                                <div class="info-label"><i class="fas fa-church"></i> Ceremonia Religiosa</div>
+                                <div class="info-text">4:40 PM</div>
                             </div>
                         </div>
                     </div>
@@ -1084,49 +1205,38 @@
 
         <!-- Ubicación -->
         <h2 class="section-title mt-5">Ubicación</h2>
-        <p class="section-subtitle">Dos lugares, un mismo amor</p>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card-custom h-100">
+        <p class="section-subtitle">Ceremonia &amp; Recepción</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card-custom">
                     <div class="card-header-custom">
-                        <i class="fas fa-church"></i>
-                        <h3>Ceremonia Religiosa</h3>
+                        <span class="card-header-ornament">✦ &nbsp; Ceremonia &amp; Recepción &nbsp; ✦</span>
+                        <h3>Calle Norte 13, Colonia Maria Isabel</h3>
+                    </div>
+                    <div class="card-icon-wrap">
+                        <div class="card-icon-medallion">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
                     </div>
                     <div class="card-body-custom">
-                        <div class="info-item text-center">                            
-                            <div class="info-text">
-                                Norte 13<br>
-                                Manzana 1321<br>
-                                Lote 16, Colonia Maria Isabel
+                        <div class="text-center mb-4">
+                            <div style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:#5a4a3a; line-height:2.2;">
+                                Calle Norte 13 &nbsp;·&nbsp;
+                                <span style="color:var(--primary-dark); font-weight:600;">Colonia Maria Isabel</span><br>
+                                Valle de Chalco Solidaridad, Estado de México, C.P. 56615
                             </div>
+                        </div>
+                        <div style="border-radius:12px; overflow:hidden; border:2px solid rgba(197,165,114,0.3); box-shadow:0 8px 25px rgba(0,0,0,0.08);">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d941.421283858897!2d-98.95889317160368!3d19.296054098867458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1c520d806681%3A0xb6384ba1765b0e3!2sCalle%20Nte%2013%2C%20Maria%20Isabel%2C%2056615%20Valle%20de%20Chalco%20Solidaridad%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1774064492219!5m2!1ses!2smx"
+                                width="100%" height="380" style="border:0; display:block;"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                         <div class="divider"></div>
                         <div class="text-center">
-                            <a href="https://maps.google.com" target="_blank" class="btn-custom">
-                                <i class="fas fa-map-marked-alt"></i> Cómo llegar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card-custom h-100">
-                    <div class="card-header-custom">
-                        <i class="fas fa-glass-cheers"></i>
-                        <h3>Recepción</h3>
-                    </div>
-                    <div class="card-body-custom">
-                        <div class="info-item text-center">
-                            <div class="info-text">
-                                Norte 13<br>
-                                Manzana 1321<br>
-                                Lote 16, Colonia Maria Isabel
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="text-center">
-                            <a href="https://maps.google.com" target="_blank" class="btn-custom">
-                                <i class="fas fa-map-marked-alt"></i> Ver mapa
+                            <a href="https://maps.google.com/?q=Calle+Norte+13,+Maria+Isabel,+Valle+de+Chalco+Solidaridad" target="_blank" class="btn-custom" style="text-decoration:none; display:inline-block;">
+                                <i class="fas fa-map-marked-alt me-2"></i>Abrir en Google Maps
                             </a>
                         </div>
                     </div>
@@ -1141,17 +1251,21 @@
             <div class="col-lg-12">
                 <div class="card-custom">
                     <div class="card-header-custom">
-                        <i class="fas fa-images"></i>
-                        <h3>Un Amor que no Envejece</h3>
+                        <span class="card-header-ornament">✦ &nbsp; Nuestra Historia &nbsp; ✦</span>
+                        <h3>Un amor que no envejece</h3>
                     </div>
-                    <div class="card-body-custom text-center py-4">
-                        <i class="fas fa-ring" style="font-size:2rem; color:var(--primary); margin-bottom:1rem;"></i>
-                        <p style="font-family:'Cormorant Garamond'; font-size:1.5rem; font-style:italic; color:var(--primary-dark); line-height:1.8;">
-                            "No fue un día, ni un año... fue una vida entera eligiéndose el uno al otro,
-                            construyendo juntos lo más hermoso que existe: un amor que no envejece."
+                    <div class="card-icon-wrap">
+                        <div class="card-icon-medallion">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                    </div>
+                    <div class="card-body-custom text-center">
+                        <p style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:#5a4a3a; line-height:2;">
+                            &ldquo;No fue un día, ni un año&hellip; fue una vida entera eligiéndose el uno al otro,
+                            construyendo juntos lo más hermoso que existe: un amor que no envejece.&rdquo;
                         </p>
                         <div class="divider"></div>
-                        <p style="font-size:1rem; color:#888; letter-spacing:2px;">✦ 50 AÑOS DE AMOR ✦</p>
+                        <p style="font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:var(--primary); letter-spacing:4px; text-transform:uppercase;">✦ &nbsp; 50 Años de Amor &nbsp; ✦</p>
                     </div>
                 </div>
             </div>
@@ -1170,24 +1284,10 @@
                 Confirma tu asistencia antes del 25 de Abril<br>
                 <i class="fas fa-heart" style="color: var(--primary);"></i>
             </p>
-            <button class="btn-custom" data-bs-toggle="modal" data-bs-target="#confirmModal">
-                <i class="fas fa-check-circle me-2"></i> Confirmar Asistencia
+            <button class="btn-custom" onclick="confirmarAsistenciaWhatsApp()">
+                <i class="fab fa-whatsapp me-2"></i> Confirmar Asistencia
+                <span style="display:block; font-size:0.75rem; font-weight:300; letter-spacing:1px; margin-top:4px; opacity:0.9;">Contamos con su presencia</span>
             </button>
-            
-            <div class="share-buttons">
-                <button class="share-btn whatsapp" onclick="shareWhatsApp()" title="Compartir en WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </button>
-                <button class="share-btn facebook" onclick="shareFacebook()" title="Compartir en Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </button>
-                <button class="share-btn twitter" onclick="shareTwitter()" title="Compartir en Twitter">
-                    <i class="fab fa-twitter"></i>
-                </button>
-                <button class="share-btn email" onclick="shareEmail()" title="Compartir por Email">
-                    <i class="fas fa-envelope"></i>
-                </button>
-            </div>
             
             <div class="footer-divider"></div>
             <p class="copyright">
@@ -1298,7 +1398,7 @@
 
         // Función de confeti mejorada
         function createCelebrationConfetti() {
-            const symbols = ['💍', '💐', '🌹', '✨', '💛', '🌟', '🌸', '💎', '🎉', '🥂'];
+            const symbols = ['💍', '🌹', '✨', '💎', '🎉', '🥂'];
             for (let i = 0; i < 80; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
@@ -1341,7 +1441,7 @@
         }
 
         // Contador regresivo mejorado
-        const eventDate = new Date('2024-06-15T19:00:00').getTime();
+        const eventDate = new Date('2026-04-25T16:40:00').getTime();
         
         function updateCountdown() {
             const now = new Date().getTime();
@@ -1400,25 +1500,9 @@
             this.reset();
         });
 
-        // Funciones de compartir mejoradas
-        function shareWhatsApp() {
-            const text = '¡Estás invitado a las Boda de Oro de María & José! 🎉 50 años de amor. Confirma tu asistencia aquí:';
-            window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + window.location.href)}`, '_blank');
-        }
-
-        function shareFacebook() {
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
-        }
-
-        function shareTwitter() {
-            const text = 'Celebración de 50 Aniversario de Bodas - María & José 💑';
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
-        }
-
-        function shareEmail() {
-            const subject = 'Invitación - Boda de Oro';
-            const body = 'Te invitamos a celebrar nuestras Boda de Oro (50 años de casados).\n\nDetalles del evento:\nFecha: 15 de Junio, 2024\nHora: 7:00 PM\nLugar: Salón Los Jardines\n\nConfirma tu asistencia en: ' + window.location.href;
-            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        function confirmarAsistenciaWhatsApp() {
+            const mensaje = 'Confirmo mi asistencia';
+            window.open('https://wa.me/525581967455?text=Confirmo%20mi%20asistencia', '_blank');
         }
 
         // Galería mejorada con navegación
@@ -1577,7 +1661,7 @@
 
         // Crear elementos flotantes decorativos
         const floatingContainer = document.getElementById('floatingElements');
-        const floatSymbols = ['💍', '💐', '🌹', '✨', '🌸', '💎', '💛'];
+        const floatSymbols = ['💍', '💎', '💛'];
         for (let i = 0; i < 20; i++) {
             const element = document.createElement('div');
             element.className = 'float-item';
